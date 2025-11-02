@@ -230,7 +230,19 @@
             text-align: center;
             border: 1px solid #e8ddd3;
             transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(30px) scale(0.95);
         }
+
+        .detail-card.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        .detail-card:nth-child(1).visible { transition-delay: 0.1s; }
+        .detail-card:nth-child(2).visible { transition-delay: 0.2s; }
+        .detail-card:nth-child(3).visible { transition-delay: 0.3s; }
+        .detail-card:nth-child(4).visible { transition-delay: 0.4s; }
 
         .detail-card:hover {
             transform: translateY(-5px);
@@ -263,6 +275,14 @@
             border-radius: 20px;
             margin: 40px 0;
             box-shadow: 0 15px 40px rgba(139, 115, 85, 0.25);
+            opacity: 0;
+            transform: scale(0.95);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .countdown-container.visible {
+            opacity: 1;
+            transform: scale(1);
         }
 
         .countdown-title {
@@ -310,6 +330,14 @@
             overflow: hidden;
             border: 3px solid #e8ddd3;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .map-container.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .map-container iframe {
@@ -326,6 +354,14 @@
             margin: 40px 0;
             border-top: 3px solid #d4a574;
             border-bottom: 3px solid #d4a574;
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .dress-code.visible {
+            opacity: 1;
+            transform: translateX(0);
         }
 
         .dress-code h3 {
@@ -483,7 +519,7 @@
                 <p>Con la bendición de Dios y el amor infinito que nos une como familia,</p>
                 <p>tenemos el honor de invitarte a celebrar los quince años de nuestra princesa.</p>
                 <p>Este momento tan especial en su vida será aún más mágico con tu presencia.</p>
-                <p class="parents-names">Luis y Angelica</p>
+                <p class="parents-names">Los Padres de Melany Sofia</p>
             </div>
 
             <div class="divider"></div>
@@ -541,7 +577,9 @@
             <div class="dress-code">
                 <h3>Código de Vestimenta</h3>
                 <p>CASUAL</p>
-                
+                <p class="reserved-color">🔴 Color Reservado: Rojo</p>
+            </div>
+
             <div class="divider"></div>
 
             <h2>Ubicación</h2>
@@ -659,6 +697,25 @@
 
         setInterval(createEnvelope, 1000);
         setInterval(createSparkle, 800);
+
+        // Animaciones al hacer scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observar todas las secciones y elementos animados
+        document.querySelectorAll('.section, .fade-in-element, .detail-card, .countdown-container, .dress-code, .map-container').forEach(el => {
+            observer.observe(el);
+        });
     </script>
 </body>
 </html>
