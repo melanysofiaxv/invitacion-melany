@@ -64,12 +64,13 @@
 
         .header {
             position: relative;
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
             background: linear-gradient(135deg, #f5ebe0 0%, #e3d5ca 100%);
+            padding: 20px;
         }
 
         .banner-photo {
@@ -225,13 +226,18 @@
 
         .detail-card {
             background: #faf8f5;
-            padding: 35px;
+            padding: 35px 20px;
             border-radius: 15px;
             text-align: center;
             border: 1px solid #e8ddd3;
             transition: all 0.3s ease;
             opacity: 0;
             transform: translateY(30px) scale(0.95);
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
 
         .detail-card.visible {
@@ -245,14 +251,20 @@
         .detail-card:nth-child(4).visible { transition-delay: 0.4s; }
 
         .detail-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-5px) scale(1);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
 
         .detail-icon {
-            font-size: 2.5em;
             margin-bottom: 15px;
-            filter: grayscale(30%);
+        }
+
+        .detail-icon svg {
+            width: 50px;
+            height: 50px;
+            stroke: #8b7355;
+            stroke-width: 2;
+            fill: none;
         }
 
         .detail-card h3 {
@@ -261,10 +273,6 @@
             margin-bottom: 12px;
             font-weight: 400;
             letter-spacing: 1px;
-            min-height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
 
         .detail-card p {
@@ -458,17 +466,29 @@
         }
 
         @media (max-width: 600px) {
+            .header {
+                min-height: auto;
+                padding: 10px;
+            }
+
             .banner-photo {
                 width: 95%;
                 height: 40vh;
+                max-width: 100%;
+            }
+
+            .name-overlay {
+                padding: 20px 35px;
+                bottom: 5%;
             }
 
             .name-overlay h1 {
-                font-size: 2em;
+                font-size: 1.8em;
+                letter-spacing: 2px;
             }
 
             .name-overlay p {
-                font-size: 1.2em;
+                font-size: 1.1em;
             }
 
             .section {
@@ -483,8 +503,14 @@
                 grid-template-columns: 1fr;
             }
 
-            .name-overlay {
-                padding: 20px 35px;
+            .detail-icon svg {
+                width: 45px;
+                height: 45px;
+            }
+
+            .detail-card {
+                padding: 30px 20px;
+                min-height: 180px;
             }
         }
     </style>
@@ -528,7 +554,7 @@
                 <p>Con la bendición de Dios y el amor infinito que nos une como familia,</p>
                 <p>tenemos el honor de invitarte a celebrar los quince años de nuestra princesa.</p>
                 <p>Este momento tan especial en su vida será aún más mágico con tu presencia.</p>
-                <p class="parents-names">Los Padres de Melany Sofia</p>
+                <p class="parents-names">Luis y Angelica</p>
             </div>
 
             <div class="divider"></div>
@@ -536,28 +562,54 @@
             <h2>Detalles de la Celebración</h2>
 
             <div class="details-grid">
+                <!-- Ícono Fecha -->
                 <div class="detail-card">
-                    <div class="detail-icon">📅</div>
+                    <div class="detail-icon">
+                        <svg viewBox="0 0 24 24">
+                            <rect x="3" y="4" width="18" height="17" rx="3"/>
+                            <line x1="3" y1="9" x2="21" y2="9"/>
+                            <line x1="8" y1="2" x2="8" y2="6"/>
+                            <line x1="16" y1="2" x2="16" y2="6"/>
+                        </svg>
+                    </div>
                     <h3>FECHA</h3>
                     <p>8 de Noviembre<br>2025</p>
                 </div>
 
+                <!-- Ícono Hora -->
                 <div class="detail-card">
-                    <div class="detail-icon">🕗</div>
+                    <div class="detail-icon">
+                        <svg viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="9"/>
+                            <line x1="12" y1="12" x2="12" y2="7"/>
+                            <line x1="12" y1="12" x2="16" y2="14"/>
+                        </svg>
+                    </div>
                     <h3>HORA</h3>
                     <p>8:00 PM</p>
                 </div>
 
+                <!-- Ícono Ubicación -->
                 <div class="detail-card">
-                    <div class="detail-icon">📍</div>
+                    <div class="detail-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 3c3.3 0 6 2.7 6 6 0 4.5-6 12-6 12S6 13.5 6 9c0-3.3 2.7-6 6-6z"/>
+                            <circle cx="12" cy="9" r="2.5"/>
+                        </svg>
+                    </div>
                     <h3>LUGAR</h3>
                     <p>Cra 33 # 74-18<br>Barrancabermeja</p>
                 </div>
 
+                <!-- Ícono Sobres -->
                 <div class="detail-card">
-                    <div class="detail-icon">💌</div>
+                    <div class="detail-icon">
+                        <svg viewBox="0 0 24 24">
+                            <rect x="3" y="5" width="18" height="14" rx="2"/>
+                            <polyline points="3,5 12,13 21,5"/>
+                        </svg>
+                    </div>
                     <h3>LLUVIA DE SOBRES</h3>
-                    <p>Tu regalo es especial<br>para nosotros</p>
                 </div>
             </div>
 
