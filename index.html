@@ -131,6 +131,25 @@
             border-radius: 20px;
             box-shadow: 0 15px 50px rgba(0, 0, 0, 0.08);
             position: relative;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .fade-in-element {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in-element.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .decorative-corner {
@@ -464,7 +483,7 @@
                 <p>Con la bendición de Dios y el amor infinito que nos une como familia,</p>
                 <p>tenemos el honor de invitarte a celebrar los quince años de nuestra princesa.</p>
                 <p>Este momento tan especial en su vida será aún más mágico con tu presencia.</p>
-                <p class="parents-names">Los Padres de Melany Sofia</p>
+                <p class="parents-names">Luis y Angelica</p>
             </div>
 
             <div class="divider"></div>
@@ -522,9 +541,7 @@
             <div class="dress-code">
                 <h3>Código de Vestimenta</h3>
                 <p>CASUAL</p>
-                <p class="reserved-color">🔴 Color Reservado: Rojo</p>
-            </div>
-
+                
             <div class="divider"></div>
 
             <h2>Ubicación</h2>
