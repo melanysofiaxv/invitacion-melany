@@ -388,8 +388,31 @@
     </style>
 </head>
 <body>
-    <!-- Música de fondo - Inserta tu código aquí -->
-    <!-- Ejemplo: <audio autoplay loop><source src="tu-musica.mp3" type="audio/mpeg"></audio> -->
+   <audio id="musicaFondo" loop>
+       <source src="musica.mp3" type="audio/mpeg">
+   </audio>
+   
+   <button id="playButton" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000; background: #d4a574; color: white; border: none; padding: 15px 20px; border-radius: 50px; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.3); font-size: 1.2em;">
+       🎵 Reproducir Música
+   </button>
+
+   <script>
+       const musica = document.getElementById('musicaFondo');
+       const boton = document.getElementById('playButton');
+       let reproduciendo = false;
+
+       boton.addEventListener('click', function() {
+           if (!reproduciendo) {
+               musica.play();
+               boton.textContent = '🔇 Pausar Música';
+               reproduciendo = true;
+           } else {
+               musica.pause();
+               boton.textContent = '🎵 Reproducir Música';
+               reproduciendo = false;
+           }
+       });
+   </script>
 
     <div class="header">
         <div class="banner-photo"></div>
@@ -478,7 +501,7 @@
 
             <div class="rsvp-section">
                 <h2 style="color: #8b7355; margin-bottom: 30px; font-weight: 300;">Confirma tu Asistencia</h2>
-                <a href="https://wa.me/573001234567?text=¡Confirmo mi asistencia a los XV años de Melany Sofia!" class="rsvp-button">
+                <a href="https://wa.me/573124013342?text=¡Confirmo mi asistencia a los XV años de Melany Sofia!" class="rsvp-button">
                     CONFIRMAR
                 </a>
                 <p style="margin-top: 25px; color: #8b7355; font-size: 1.1em;">Tu presencia es nuestro mejor regalo</p>
