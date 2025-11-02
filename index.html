@@ -35,6 +35,33 @@
             }
         }
 
+        /* Estrellas brillantes */
+        .sparkle {
+            position: fixed;
+            font-size: 20px;
+            animation: sparkle-fall linear infinite;
+            z-index: 1;
+            pointer-events: none;
+            opacity: 0.6;
+        }
+
+        @keyframes sparkle-fall {
+            0% {
+                transform: translateY(-10vh) rotate(0deg) scale(1);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.6;
+            }
+            90% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg) scale(0.5);
+                opacity: 0;
+            }
+        }
+
         .header {
             position: relative;
             height: 100vh;
@@ -46,29 +73,15 @@
         }
 
         .banner-photo {
-       width: 85%;
-       max-width: 450px;
-       height: 75vh;
-       background: url('melany.jpg') center/cover no-repeat;;
+            width: 85%;
+            max-width: 450px;
+            height: 75vh;
+            background: url('melany.jpg') center/cover no-repeat;
             border-radius: 30px;
             box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
             position: relative;
             overflow: hidden;
             border: 5px solid #d4a574;
-        }
-
-        .banner-photo::after {
-            content: 'FOTO DE MELANY';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 1.3em;
-            text-align: center;
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
-            letter-spacing: 3px;
-            font-weight: 300;
         }
 
         .name-overlay {
@@ -181,7 +194,7 @@
 
         .details-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 25px;
             margin: 40px 0;
         }
@@ -304,21 +317,14 @@
             color: #6b5d4f;
             font-weight: 400;
             letter-spacing: 3px;
+            margin-bottom: 15px;
         }
 
-        .music-notice {
-            background: linear-gradient(135deg, rgba(212, 165, 116, 0.1), rgba(232, 221, 211, 0.2));
-            padding: 25px;
-            border-radius: 12px;
-            text-align: center;
-            margin: 30px 0;
-            border: 2px dashed #d4a574;
-        }
-
-        .music-notice p {
-            color: #8b7355;
-            font-size: 1em;
-            font-style: italic;
+        .reserved-color {
+            font-size: 1.1em;
+            color: #dc143c;
+            font-weight: 600;
+            margin-top: 10px;
         }
 
         .rsvp-section {
@@ -360,6 +366,33 @@
             letter-spacing: 1px;
         }
 
+        /* Botón de música pequeño y discreto */
+        #playButton {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: rgba(212, 165, 116, 0.9);
+            color: white;
+            border: none;
+            padding: 12px 16px;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            font-size: 1.2em;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        #playButton:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+        }
+
         @media (max-width: 600px) {
             .name-overlay h1 {
                 font-size: 2em;
@@ -388,31 +421,11 @@
     </style>
 </head>
 <body>
-   <audio id="musicaFondo" loop>
-       <source src="musica.mp3" type="audio/mpeg">
-   </audio>
+    <audio id="musicaFondo" loop>
+        <source src="musica.mp3" type="audio/mpeg">
+    </audio>
    
-   <button id="playButton" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000; background: #d4a574; color: white; border: none; padding: 15px 20px; border-radius: 50px; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.3); font-size: 1.2em;">
-       🎵 Reproducir Música
-   </button>
-
-   <script>
-       const musica = document.getElementById('musicaFondo');
-       const boton = document.getElementById('playButton');
-       let reproduciendo = false;
-
-       boton.addEventListener('click', function() {
-           if (!reproduciendo) {
-               musica.play();
-               boton.textContent = '🔇 Pausar Música';
-               reproduciendo = true;
-           } else {
-               musica.pause();
-               boton.textContent = '🎵 Reproducir Música';
-               reproduciendo = false;
-           }
-       });
-   </script>
+    <button id="playButton">🎵</button>
 
     <div class="header">
         <div class="banner-photo"></div>
@@ -454,7 +467,13 @@
                 <div class="detail-card">
                     <div class="detail-icon">📍</div>
                     <h3>LUGAR</h3>
-                    <p>Cra 33 # 74-18</p>
+                    <p>Cra 33 # 74-18<br>Barrancabermeja</p>
+                </div>
+
+                <div class="detail-card">
+                    <div class="detail-icon">💌</div>
+                    <h3>LLUVIA DE SOBRES</h3>
+                    <p>Tu regalo es especial<br>para nosotros</p>
                 </div>
             </div>
 
@@ -482,7 +501,8 @@
 
             <div class="dress-code">
                 <h3>Código de Vestimenta</h3>
-                <p>FORMAL</p>
+                <p>CASUAL</p>
+                <p class="reserved-color">🔴 Color Reservado: Rojo</p>
             </div>
 
             <div class="divider"></div>
@@ -490,11 +510,7 @@
             <h2>Ubicación</h2>
 
             <div class="map-container">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3916.5!2d-74.8!3d11.0!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTHCsDAwJzAwLjAiTiA3NMKwNDgnMDAuMCJX!5e0!3m2!1ses!2sco!4v1234567890" allowfullscreen="" loading="lazy"></iframe>
-            </div>
-
-            <div class="music-notice">
-                <p>🎵 La música de fondo hará esta invitación aún más especial 🎵</p>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.2155777777776!2d-73.85666668523658!3d7.065555994890001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e683f6cf328e7f3%3A0x7777777777777777!2sCra.%2033%20%2374-18%2C%20Barrancabermeja%2C%20Santander!5e0!3m2!1ses!2sco!4v1234567890" allowfullscreen="" loading="lazy"></iframe>
             </div>
 
             <div class="divider"></div>
@@ -514,6 +530,40 @@
     </div>
 
     <script>
+        // Música con reproducción automática mejorada
+        const musica = document.getElementById('musicaFondo');
+        const boton = document.getElementById('playButton');
+        let reproduciendo = false;
+
+        // Intento de autoplay al cargar
+        document.addEventListener('DOMContentLoaded', function() {
+            musica.play().then(() => {
+                reproduciendo = true;
+                boton.textContent = '🔇';
+            }).catch(() => {
+                // Si falla el autoplay, espera al primer click del usuario
+                document.body.addEventListener('click', function iniciarMusica() {
+                    musica.play();
+                    reproduciendo = true;
+                    boton.textContent = '🔇';
+                    document.body.removeEventListener('click', iniciarMusica);
+                }, { once: true });
+            });
+        });
+
+        boton.addEventListener('click', function(e) {
+            e.stopPropagation();
+            if (!reproduciendo) {
+                musica.play();
+                boton.textContent = '🔇';
+                reproduciendo = true;
+            } else {
+                musica.pause();
+                boton.textContent = '🎵';
+                reproduciendo = false;
+            }
+        });
+
         // Cuenta regresiva
         const countdownDate = new Date("November 8, 2025 20:00:00").getTime();
 
@@ -554,7 +604,24 @@
             }, 8000);
         }
 
+        // Lluvia de estrellas brillantes
+        function createSparkle() {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            const sparkleIcons = ['✨', '⭐', '💫', '🌟'];
+            sparkle.textContent = sparkleIcons[Math.floor(Math.random() * sparkleIcons.length)];
+            sparkle.style.left = Math.random() * 100 + 'vw';
+            sparkle.style.animationDuration = (Math.random() * 4 + 6) + 's';
+            sparkle.style.fontSize = (Math.random() * 10 + 15) + 'px';
+            document.body.appendChild(sparkle);
+
+            setTimeout(() => {
+                sparkle.remove();
+            }, 10000);
+        }
+
         setInterval(createEnvelope, 1000);
+        setInterval(createSparkle, 800);
     </script>
 </body>
 </html>
