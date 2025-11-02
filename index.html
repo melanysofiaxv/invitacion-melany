@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XV Años - Melany Sofia</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(180deg, #f8f4f0 0%, #e8ddd3 100%);
+            color: #5a5a5a;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Lluvia de sobres */
+        .envelope {
+            position: fixed;
+            font-size: 25px;
+            animation: fall linear infinite;
+            z-index: 1;
+            pointer-events: none;
+            opacity: 0.4;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+
+        .header {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: linear-gradient(135deg, #f5ebe0 0%, #e3d5ca 100%);
+        }
+
+        .banner-photo {
+            width: 85%;
+            max-width: 450px;
+            height: 75vh;
+            background: linear-gradient(135deg, #d4a574 0%, #c89b6d 100%);
+            border-radius: 30px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+            position: relative;
+            overflow: hidden;
+            border: 5px solid #d4a574;
+        }
+
+        .banner-photo::after {
+            content: 'FOTO DE MELANY';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.3em;
+            text-align: center;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+            letter-spacing: 3px;
+            font-weight: 300;
+        }
+
+        .name-overlay {
+            position: absolute;
+            bottom: 12%;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px 60px;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            border: 2px solid #d4a574;
+        }
+
+        .name-overlay h1 {
+            font-size: 2.8em;
+            color: #8b7355;
+            font-weight: 300;
+            letter-spacing: 4px;
+            margin-bottom: 10px;
+        }
+
+        .name-overlay p {
+            font-size: 1.5em;
+            color: #a08968;
+            font-weight: 300;
+            font-style: italic;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section {
+            background: white;
+            margin: 50px auto;
+            padding: 60px 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.08);
+            position: relative;
+        }
+
+        .decorative-corner {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            opacity: 0.3;
+        }
+
+        .decorative-corner.top-left {
+            top: 0;
+            left: 0;
+            border-top: 3px solid #d4a574;
+            border-left: 3px solid #d4a574;
+            border-top-left-radius: 20px;
+        }
+
+        .decorative-corner.bottom-right {
+            bottom: 0;
+            right: 0;
+            border-bottom: 3px solid #d4a574;
+            border-right: 3px solid #d4a574;
+            border-bottom-right-radius: 20px;
+        }
+
+        .section h2 {
+            color: #8b7355;
+            font-size: 2.2em;
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        .divider {
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #d4a574, transparent);
+            margin: 30px auto;
+        }
+
+        .parents-invitation {
+            text-align: center;
+            margin: 40px 0;
+            padding: 40px;
+            background: #faf8f5;
+            border-radius: 15px;
+            border-left: 4px solid #d4a574;
+            border-right: 4px solid #d4a574;
+        }
+
+        .parents-invitation p {
+            font-size: 1.15em;
+            line-height: 2;
+            color: #6b5d4f;
+            margin: 15px 0;
+        }
+
+        .parents-names {
+            font-weight: 600;
+            color: #8b7355;
+            font-size: 1.1em;
+            margin-top: 25px;
+            letter-spacing: 1px;
+        }
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .detail-card {
+            background: #faf8f5;
+            padding: 35px;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid #e8ddd3;
+            transition: all 0.3s ease;
+        }
+
+        .detail-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .detail-icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            filter: grayscale(30%);
+        }
+
+        .detail-card h3 {
+            color: #8b7355;
+            font-size: 1.2em;
+            margin-bottom: 12px;
+            font-weight: 400;
+            letter-spacing: 1px;
+        }
+
+        .detail-card p {
+            color: #6b5d4f;
+            font-size: 1.05em;
+            line-height: 1.6;
+        }
+
+        .countdown-container {
+            background: linear-gradient(135deg, #8b7355, #a08968);
+            padding: 45px 30px;
+            border-radius: 20px;
+            margin: 40px 0;
+            box-shadow: 0 15px 40px rgba(139, 115, 85, 0.25);
+        }
+
+        .countdown-title {
+            text-align: center;
+            color: white;
+            font-size: 1.8em;
+            margin-bottom: 30px;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        .countdown {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .countdown-item {
+            background: rgba(255, 255, 255, 0.98);
+            padding: 25px 15px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .countdown-number {
+            font-size: 2.5em;
+            font-weight: 300;
+            color: #8b7355;
+            display: block;
+        }
+
+        .countdown-label {
+            font-size: 0.85em;
+            color: #6b5d4f;
+            text-transform: uppercase;
+            margin-top: 8px;
+            letter-spacing: 1px;
+        }
+
+        .map-container {
+            margin: 40px 0;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 3px solid #e8ddd3;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 400px;
+            border: none;
+        }
+
+        .dress-code {
+            background: #faf8f5;
+            padding: 35px;
+            border-radius: 15px;
+            text-align: center;
+            margin: 40px 0;
+            border-top: 3px solid #d4a574;
+            border-bottom: 3px solid #d4a574;
+        }
+
+        .dress-code h3 {
+            color: #8b7355;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        .dress-code p {
+            font-size: 1.4em;
+            color: #6b5d4f;
+            font-weight: 400;
+            letter-spacing: 3px;
+        }
+
+        .music-notice {
+            background: linear-gradient(135deg, rgba(212, 165, 116, 0.1), rgba(232, 221, 211, 0.2));
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            margin: 30px 0;
+            border: 2px dashed #d4a574;
+        }
+
+        .music-notice p {
+            color: #8b7355;
+            font-size: 1em;
+            font-style: italic;
+        }
+
+        .rsvp-section {
+            text-align: center;
+            margin: 50px 0;
+        }
+
+        .rsvp-button {
+            display: inline-block;
+            padding: 20px 50px;
+            background: linear-gradient(135deg, #d4a574 0%, #c89b6d 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.3em;
+            font-weight: 400;
+            letter-spacing: 2px;
+            box-shadow: 0 8px 25px rgba(212, 165, 116, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .rsvp-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(212, 165, 116, 0.4);
+        }
+
+        .footer {
+            background: linear-gradient(135deg, #8b7355, #6b5d4f);
+            color: #f5ebe0;
+            padding: 40px 20px;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .footer p {
+            font-size: 1.2em;
+            font-style: italic;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        @media (max-width: 600px) {
+            .name-overlay h1 {
+                font-size: 2em;
+            }
+
+            .name-overlay p {
+                font-size: 1.2em;
+            }
+
+            .section {
+                padding: 40px 25px;
+            }
+
+            .countdown {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .details-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .name-overlay {
+                padding: 25px 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Música de fondo - Inserta tu código aquí -->
+    <!-- Ejemplo: <audio autoplay loop><source src="tu-musica.mp3" type="audio/mpeg"></audio> -->
+
+    <div class="header">
+        <div class="banner-photo"></div>
+        <div class="name-overlay">
+            <h1>MELANY SOFIA</h1>
+            <p>Mis XV Años</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="section">
+            <div class="decorative-corner top-left"></div>
+            <div class="decorative-corner bottom-right"></div>
+
+            <div class="parents-invitation">
+                <p>Con la bendición de Dios y el amor infinito que nos une como familia,</p>
+                <p>tenemos el honor de invitarte a celebrar los quince años de nuestra princesa.</p>
+                <p>Este momento tan especial en su vida será aún más mágico con tu presencia.</p>
+                <p class="parents-names">Los Padres de Melany Sofia</p>
+            </div>
+
+            <div class="divider"></div>
+
+            <h2>Detalles de la Celebración</h2>
+
+            <div class="details-grid">
+                <div class="detail-card">
+                    <div class="detail-icon">📅</div>
+                    <h3>FECHA</h3>
+                    <p>8 de Noviembre<br>2025</p>
+                </div>
+
+                <div class="detail-card">
+                    <div class="detail-icon">🕗</div>
+                    <h3>HORA</h3>
+                    <p>8:00 PM</p>
+                </div>
+
+                <div class="detail-card">
+                    <div class="detail-icon">📍</div>
+                    <h3>LUGAR</h3>
+                    <p>Cra 33 # 74-18</p>
+                </div>
+            </div>
+
+            <div class="countdown-container">
+                <h3 class="countdown-title">Faltan para la Fiesta</h3>
+                <div class="countdown" id="countdown">
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="days">00</span>
+                        <span class="countdown-label">Días</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="hours">00</span>
+                        <span class="countdown-label">Horas</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="minutes">00</span>
+                        <span class="countdown-label">Minutos</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="seconds">00</span>
+                        <span class="countdown-label">Segundos</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dress-code">
+                <h3>Código de Vestimenta</h3>
+                <p>FORMAL</p>
+            </div>
+
+            <div class="divider"></div>
+
+            <h2>Ubicación</h2>
+
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3916.5!2d-74.8!3d11.0!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTHCsDAwJzAwLjAiTiA3NMKwNDgnMDAuMCJX!5e0!3m2!1ses!2sco!4v1234567890" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+
+            <div class="music-notice">
+                <p>🎵 La música de fondo hará esta invitación aún más especial 🎵</p>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="rsvp-section">
+                <h2 style="color: #8b7355; margin-bottom: 30px; font-weight: 300;">Confirma tu Asistencia</h2>
+                <a href="https://wa.me/573001234567?text=¡Confirmo mi asistencia a los XV años de Melany Sofia!" class="rsvp-button">
+                    CONFIRMAR
+                </a>
+                <p style="margin-top: 25px; color: #8b7355; font-size: 1.1em;">Tu presencia es nuestro mejor regalo</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>Gracias por ser parte de este momento inolvidable</p>
+    </div>
+
+    <script>
+        // Cuenta regresiva
+        const countdownDate = new Date("November 8, 2025 20:00:00").getTime();
+
+        const updateCountdown = () => {
+            const now = new Date().getTime();
+            const distance = countdownDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").textContent = days.toString().padStart(2, '0');
+            document.getElementById("hours").textContent = hours.toString().padStart(2, '0');
+            document.getElementById("minutes").textContent = minutes.toString().padStart(2, '0');
+            document.getElementById("seconds").textContent = seconds.toString().padStart(2, '0');
+
+            if (distance < 0) {
+                document.querySelector('.countdown-title').textContent = "¡Es Hoy!";
+            }
+        };
+
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
+        // Lluvia de sobres
+        function createEnvelope() {
+            const envelope = document.createElement('div');
+            envelope.className = 'envelope';
+            envelope.textContent = '💌';
+            envelope.style.left = Math.random() * 100 + 'vw';
+            envelope.style.animationDuration = (Math.random() * 3 + 5) + 's';
+            envelope.style.fontSize = (Math.random() * 15 + 20) + 'px';
+            document.body.appendChild(envelope);
+
+            setTimeout(() => {
+                envelope.remove();
+            }, 8000);
+        }
+
+        setInterval(createEnvelope, 1000);
+    </script>
+</body>
+</html>
